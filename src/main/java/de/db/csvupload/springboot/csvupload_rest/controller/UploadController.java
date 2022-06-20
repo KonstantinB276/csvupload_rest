@@ -38,14 +38,18 @@ public class UploadController {
                         .withIgnoreEmptyLine(true)
                         .withIgnoreQuotations(true)
                         .withThrowExceptions(false)
-                        .withSkipLines(1)
                         .withSeparator(';')
                         .build();
                 betriebsstelleList = csvToBean.parse();
-//                model.addAttribute("betriebsstelleList", betriebsstelleList);
-//                model.addAttribute("status", true);
+                if (betriebsstelleList.get(0).getCode() == null) {
+                    model.addAttribute("message", "An error occurred while processing the CSV file.");
+                    model.addAttribute("status", false);
+                } else {
+//                    model.addAttribute("betriebsstelleList", betriebsstelleList);
+//                    model.addAttribute("status", true);
                 model.addAttribute("message", "Success.");
                 model.addAttribute("status", false);
+                }
             } catch (Exception ex) {
                 model.addAttribute("message", "An error occurred while processing the CSV file.");
                 model.addAttribute("status", false);

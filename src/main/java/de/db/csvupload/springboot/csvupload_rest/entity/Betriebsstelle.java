@@ -2,17 +2,18 @@ package de.db.csvupload.springboot.csvupload_rest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 
 @JsonIgnoreProperties(value = { "code" })
 public class Betriebsstelle {
-    @CsvBindByPosition(position = 0)
+    @CsvBindByName(column = "Abk")
     private String code;
-    @CsvBindByPosition(position = 1)
+    @CsvBindByName(column = "Name")
     private String name;
-    @CsvBindByPosition(position = 2)
+    @CsvBindByName(column = "Kurzname")
     private String kurzname;
-    @CsvBindByPosition(position = 3)
+    @CsvBindByName(column = "Typ")
     private String typ;
 
     public Betriebsstelle() {
